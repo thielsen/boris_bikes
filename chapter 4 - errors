@@ -1,0 +1,20 @@
+Chapter 4: Errors are good.
+
+
+2.6.0 :001 > docking_station = DockingStation.new
+Traceback (most recent call last):
+        4: from /Users/kai/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/kai/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/kai/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):1
+NameError (uninitialized constant DockingStation)
+
+Type of Error: NameError
+Path of Error: Line 1 (main object, attempting to load a constant)
+Meaning of Error: The Uninitialized Constant error is a variation of the
+regular NameError exception class.
+
+This error appears when the code refers to a class or module that it can't find
+
+This error can be solved by: Declaring a class constant with name DockingStation
+and initializing this class.
