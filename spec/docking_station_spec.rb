@@ -3,6 +3,8 @@ require 'docking_station'
 
 RSpec.describe DockingStation do
 
+
+
 context 'In all states' do
   it { is_expected.to respond_to :release_bike }
   it { is_expected.to respond_to :dock }
@@ -13,7 +15,7 @@ end
 context 'Docking station full' do
   before(:each) do
     @fullstation = described_class.new
-    20.times { @fullstation.dock(Bike.new) }
+    DockingStation::DEFAULT_CAPACITY.times { @fullstation.dock(Bike.new) }
   end
   it { expect { @fullstation.dock(Bike.new) }.to raise_error("I'm full!") }
   #it { expect(@fullstation.full?).to be true }
