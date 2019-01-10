@@ -9,16 +9,16 @@ def initialize(docked_bikes = Array.new)
 end
 
   def release_bike
-    fail "No bikes!" if self.empty? == true
+    fail "No bikes!" if empty? == true
     @docked_bikes.pop
   end
 
   def dock(bike)
-    fail "I'm full!" if self.full? == true
+    fail "I'm full!" if full? == true
     @docked_bikes.push(bike)
   end
 
-
+private
 
   def full?
    true if @docked_bikes.count >= 20

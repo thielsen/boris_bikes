@@ -3,10 +3,6 @@ require 'docking_station'
 
 RSpec.describe DockingStation do
 
-emptystation = described_class.new
-fullstation = described_class.new
-20.times { fullstation.dock(Bike.new) }
-
 context 'In all states' do
   it { is_expected.to respond_to :release_bike }
   it { is_expected.to respond_to :dock }
@@ -15,23 +11,31 @@ context 'In all states' do
 end
 
 context 'Docking station full' do
-   it { expect { fullstation.dock(Bike.new) }.to raise_error("I'm full!") }
-   #it { expect(fullstation.full?).to be true }
+  before(:each) do
+    @fullstation = described_class.new
+    20.times { @fullstation.dock(Bike.new) }
+  end
+  it { expect { @fullstation.dock(Bike.new) }.to raise_error("I'm full!") }
+  #it { expect(@fullstation.full?).to be true }
  end
 
 context 'Docking station empty' do
-  it { expect { emptystation.release_bike }.to raise_error('No bikes!') }
-  #it { expect(emptystation.empty?).to be true }
+  before(:each) do
+    @emptystation = described_class.new
+  end
+  it { expect { @emptystation.release_bike }.to raise_error('No bikes!') }
+  #it { expect(@emptystation.empty?).to be true }
 end
 
 context 'Docking station neither full nor empty' do
-  biketest = Bike.new
-  station = described_class.new
-  station.dock(biketest)
-  it { expect(station.docked_bikes[0]).to eq biketest }
-  it { expect(station.docked_bikes[0]).to be_an_instance_of(Bike) }
+  before(:each) do
+    @biketest = Bike.new
+    @station = described_class.new
+    @station.dock(@biketest)
+  end
+  it { expect(@station.docked_bikes[0]).to eq @biketest }
+  it { expect(@station.docked_bikes[0]).to be_an_instance_of(Bike) }
 end
-
 
 
 
